@@ -23,26 +23,96 @@
                   <div class="swiper-container">
                     <div class="swiper-wrapper">
                       <div class="swiper-slide">
+                        <div class="content-block-title">Simple Cards</div>
+                        <div class="card">
+                          <div class="card-content">
+                            <div class="card-content-inner">This is simple card with plain text. But card could contain its own header, footer, list view, image, and any elements inside.</div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">Card header</div>
+                          <div class="card-content">
+                            <div class="card-content-inner">Card with header and footer. Card header is used to display card title and footer for some additional information or for custom actions.</div>
+                          </div>
+                          <div class="card-footer">Card Footer</div>
+                        </div>
+                        <div class="card">
+                          <div class="card-content">
+                            <div class="card-content-inner">Another card. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat sem est, non tincidunt ligula volutpat sit amet. Mauris aliquet magna justo. </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="swiper-slide">
+                        <div id='map' style='width: 100%; height: 1800px;'></div>
+                        <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmxpZTdjIiwiYSI6ImNpemYxbjNhNzAwNjIyd3A2cGtrNXRnMG0ifQ._edJwgsKC04T81VbfaVNJw';
+                        var map = new mapboxgl.Map({
+                            container: 'map',
+                            center: [174.776, -41.296],
+                            zoom: 1,
+                            style: 'mapbox://styles/charlie7c/cj10kfoxr001j2sq47oju8qzt',
+                            hash: true
+                        });
+                        map.on('click', function(e) {
+                          console.log('test');
+                          var features = map.queryRenderedFeatures(e.point, {
+                            layers: ['te-aro'] // replace this with the name of the layer
+                          });
+
+                          if (!features.length) {
+                            return;
+                          }
+
+                          var feature = features[0];
+
+                          var popup = new mapboxgl.Popup({ offset: [0, -15] })
+                            .setLngLat(feature.geometry.coordinates)
+                            .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+                            .setLngLat(feature.geometry.coordinates)
+                            .addTo(map);
+                        });
+
+                        </script>
 
 
                       </div>
                       <div class="swiper-slide">
 
+                        <div id='map2' style='width: 100%; height: 1800px;'></div>
+                        <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmxpZTdjIiwiYSI6ImNpemYxbjNhNzAwNjIyd3A2cGtrNXRnMG0ifQ._edJwgsKC04T81VbfaVNJw';
+                        var map = new mapboxgl.Map({
+                            container: 'map2',
+                            center: [174.776, -41.296],
+                            zoom: 1,
+                            style: 'mapbox://styles/charlie7c/cj10kfoxr001j2sq47oju8qzt',
+                            hash: true
+                        });
+                        map.on('click', function(e) {
+                          console.log('test');
+                          var features = map.queryRenderedFeatures(e.point, {
+                            layers: ['te-aro'] // replace this with the name of the layer
+                          });
 
-                                                <div id='map' style='width: 800px; height: 1800px;'></div>
-                                                <script>
-                                                mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmxpZTdjIiwiYSI6ImNpemYxbjNhNzAwNjIyd3A2cGtrNXRnMG0ifQ._edJwgsKC04T81VbfaVNJw';
-                                                var map = new mapboxgl.Map({
-                                                    container: 'map',
-                                                    style: 'mapbox://styles/mapbox/streets-v9'
-                                                });
-                                                </script>
+                          if (!features.length) {
+                            return;
+                          }
+
+                          var feature = features[0];
+
+                          var popup = new mapboxgl.Popup({ offset: [0, -15] })
+                            .setLngLat(feature.geometry.coordinates)
+                            .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+                            .setLngLat(feature.geometry.coordinates)
+                            .addTo(map);
+                        });
+
+                        </script>
 
 
                       </div>
-                      <div class="swiper-slide"></div>
-                      <div class="swiper-slide"></div>
-                      <div class="swiper-slide"></div>
+
                     </div>
                     <div class="swiper-pagination"></div>
                   </div>
